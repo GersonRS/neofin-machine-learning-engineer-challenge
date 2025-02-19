@@ -1,4 +1,4 @@
-# Card ML Deployment
+# Customer ML Deployment
 
 ## **Overview**
 
@@ -23,9 +23,13 @@ Além disso, o projeto foi estruturado para facilitar a **implantação e escala
 - [Contato](#contato)
 - [Acknowledgments](#acknowledgments)
 
-## Objetivo
+## **Objetivo**  
 
-O objetivo deste projeto é criar uma pipeline de treinamento e implantação de um modelo de machine learning usando Scikit-learn, FastAPI e Docker. O modelo é treinado com base no conjunto de dados de Cards do Gods Unchained e é capaz de fazer classificação de cards `early` e `late` game com base nas características fornecidas e é implantado em um cluster kubernetes servindo uma api http que recebe o `id` de um card e retorna a classificação deste card.
+O objetivo deste projeto é desenvolver e implantar uma **pipeline de Machine Learning** para a **classificação de customers** com base em seus padrões de pagamento. Utilizando **Scikit-learn**, **FastAPI** e **Docker**, criamos um modelo capaz de identificar clientes em categorias como **Bons Pagadores, Maus Pagadores, Pagadores Esquecidos, Pagadores Duvidosos e Novos Pagadores**.  
+
+O modelo é treinado com dados históricos de pagamentos e informações das empresas, aplicando técnicas de engenharia de features e normalização para otimizar a acurácia da classificação. A solução é implantada em um **ambiente escalável** via **Docker**, disponibilizando uma **API HTTP** que recebe os dados de um pagamento e retorna a categoria do customer.  
+
+Além disso, o projeto permite fácil integração com sistemas de cobrança, ajudando na redução da inadimplência e na personalização de estratégias de cobrança para cada perfil de cliente.
 
 ## Fluxo de Versionamento
 
@@ -209,9 +213,9 @@ O projeto tem a seguinte estrutura de diretórios:
 │   └── customer-ml
 │       ├── Chart.yaml
 │       ├── templates
-│       │   ├── card_clusterip.yaml
-│       │   ├── card_deployment.yaml
-│       │   ├── card_ingress.yaml
+│       │   ├── customer_clusterip.yaml
+│       │   ├── customer_deployment.yaml
+│       │   ├── customer_ingress.yaml
 │       │   ├── _helpers.tpl
 │       │   ├── hpa.yaml
 │       │   └── service-accounts.yaml
@@ -232,14 +236,9 @@ O projeto tem a seguinte estrutura de diretórios:
 │   ├── customer_classification_pipeline.pkl
 │   ├── ml
 │   │   ├── classifier.py
-│   │   └── __pycache__
-│   │       └── classifier.cpython-310.pyc
 │   ├── modelo_onehotenc.pkl
 │   ├── schemas
 │   │   ├── customer.py
-│   │   └── __pycache__
-│   │       ├── card.cpython-310.pyc
-│   │       └── customer.cpython-310.pyc
 │   └── target_encoder.pkl
 ├── mypy.ini
 ├── notebooks
@@ -247,27 +246,18 @@ O projeto tem a seguinte estrutura de diretórios:
 ├── package.json
 ├── package-lock.json
 ├── poetry.lock
-├── __pycache__
-│   └── main.cpython-310.pyc
 ├── pyproject.toml
 ├── pytest.ini
 ├── README.md
 ├── requirements.txt
 ├── routes
 │   ├── home.py
-│   ├── __pycache__
-│   │   └── home.cpython-310.pyc
 │   └── v1
 │       ├── customer_predict.py
-│       └── __pycache__
-│           ├── card_predict.cpython-310.pyc
-│           └── customer_predict.cpython-310.pyc
 ├── tests
 │   ├── __init__.py
 │   ├── load_test_new.py
 │   ├── load_test.py
-│   ├── __pycache__
-│   │   └── load_test.cpython-310.pyc
 │   └── test_response.py
 └── version.txt
 

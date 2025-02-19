@@ -1,8 +1,6 @@
 nameOverride: ""
 fullnameOverride: ""
 loadBalancerClass: ""
-imagePullSecrets:
-  - name: dockerconfigjson-github-com
 
 service:
   enabled: true
@@ -16,7 +14,7 @@ ingress:
       path: "/"
 
   tls:
-    - secretName: "card-tls"
+    - secretName: "customer-tls"
       hosts:
         - "customer-ml.192.168.49.2.nip.io"
 
@@ -26,8 +24,8 @@ hpa:
 deployment:
   enabled: true
   image:
-    repository: ghcr.io/gersonrs/magalu-machine-learning-engineer-challenge
-    tag: "v1.7.0"
+    repository: customer-ml
+    tag: "latest"
     pullPolicy: Never
   serviceAccount:
     create: true

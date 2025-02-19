@@ -55,7 +55,7 @@ json_test = {
 }
 
 
-class CardPredict(TaskSet):
+class CustomerPredict(TaskSet):
     @tag("Predictions")
     @task
     def predict(self):
@@ -68,8 +68,8 @@ class CardPredict(TaskSet):
         self.client.get("/")
 
 
-class CardLoadTest(HttpUser):
-    tasks = [CardPredict]
+class CustomerLoadTest(HttpUser):
+    tasks = [CustomerPredict]
     host = "http://127.0.0.1"
     stop_timeout = 200
     wait_time = between(1, 5)
