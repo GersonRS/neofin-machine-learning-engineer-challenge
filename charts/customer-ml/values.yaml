@@ -12,13 +12,13 @@ ingress:
   enabled: true
   annotations:
   hosts:
-    - host: "card-ml.192.168.49.2.nip.io"
+    - host: "customer-ml.192.168.49.2.nip.io"
       path: "/"
 
   tls:
     - secretName: "card-tls"
       hosts:
-        - "card-ml.192.168.49.2.nip.io"
+        - "customer-ml.192.168.49.2.nip.io"
 
 hpa:
   enabled: true
