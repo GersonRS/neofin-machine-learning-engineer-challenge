@@ -88,13 +88,13 @@ Siga estas etapas para criar uma imagem Docker e executar a aplicação em um co
 ### 1. Construir uma imagem docker da aplicação
 
 ```
-docker build -t card-ml:latest .
+docker build -t customer-ml:latest .
 ```
 
 ### 2. Executar o container
 
 ```
-docker run -d -p 8000:8000 --name card-api card-ml:latest
+docker run -d -p 8000:8000 --name customer-api customer-ml:latest
 ```
 O comando acima executa um contêiner Docker a partir da imagem que você construiu. Ele mapeia a porta 8000 do contêiner para a porta 8000 do host local.
 
@@ -107,7 +107,7 @@ Agora, a aplicação estará em execução dentro do contêiner Docker. Você po
 
 ### 4. Experimente o método post/predict
 ```
-curl -X POST "http://localhost:8000/v1/card/predict" -H\
+curl -X POST "http://localhost:8000/v1/customer/predict" -H\
  "accept: application/json"\
  -H "Content-Type: application/json"\
  -d "{\"id\": 205}"

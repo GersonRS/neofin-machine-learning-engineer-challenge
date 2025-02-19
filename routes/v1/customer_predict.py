@@ -115,13 +115,17 @@ async def get_prediction(payment: PaymentRecord):
 
         # Fazendo a previsão com o modelo
         prediction_encoded = clf.model.predict(features)
+        if prediction_encoded.sum() > 0:
+            # Converter de array OneHotEncoded de volta para rótulo original
+            predicted_category = clf.target_encoder.inverse_transform([prediction_encoded[0]])[0][0]
 
-        # Converter de array OneHotEncoded de volta para rótulo original
-        predicted_category = clf.target_encoder.inverse_transform([prediction_encoded[0]])[0][0]
-
-        return {
-            "prediction": output[predicted_category],
-        }
+            return {
+                "prediction": output[predicted_category],
+            }
+        else:
+            return {
+                "prediction": "Desconhecido",
+            }
 
     except Exception as e:
         return {"error": f"Erro ao processar a solicitação: {str(e)}"}

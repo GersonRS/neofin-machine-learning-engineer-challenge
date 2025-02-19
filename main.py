@@ -7,7 +7,7 @@ from fastapi import FastAPI
 
 import models.ml.classifier as clf
 from routes.home import app_home
-from routes.v1.card_predict import app_customer_predict_v1
+from routes.v1.customer_predict import app_customer_predict_v1
 
 PATH_MODELS = Path(Path(__file__).parent, "models")
 PATH_DATA = Path(Path(__file__).parent, "data")
