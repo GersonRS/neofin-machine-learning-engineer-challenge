@@ -1,0 +1,10 @@
+apiVersion: v2
+appVersion: 1.5.0
+description: A network load-balancer implementation for Kubernetes using standard routing protocols
+home: https://github.com/GersonRS/neofin-machine-learning-engineer-challenge
+kubeVersion: ">= 1.19.0-0"
+name: "customer-ml"
+sources:
+  - https://github.com/GersonRS/neofin-machine-learning-engineer-challenge
+type: application
+version: "0"

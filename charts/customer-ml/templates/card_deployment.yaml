@@ -1,0 +1,86 @@
+{{- if .Values.deployment.enabled }}
+{{- $fullname := (include "magalu-machine-learning-engineer-challenge.fullname" .) }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $fullname }}-deployment
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "magalu-machine-learning-engineer-challenge.labels" $ | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "magalu-machine-learning-engineer-challenge.selector" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "magalu-machine-learning-engineer-challenge.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.deployment.runtimeClassName }}
+      runtimeClassName: {{ . | quote }}
+      {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.deployment.serviceAccount.create }}
+      serviceAccountName: {{ template "magalu-machine-learning-engineer-challenge.serviceAccountName" . }}
+      {{ end }}
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: deployment
+        image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag | default .Chart.AppVersion }}
+        {{- if .Values.deployment.image.pullPolicy }}
+        imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+        {{- end }}
+        {{- if .Values.deployment.command }}
+        command:
+          - {{ .Values.deployment.command }}
+        {{- end }}
+        {{- with .Values.deployment.args }}
+        args:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        env:
+          {{- include "custom_deployment_environment" . | indent 10 }}
+        ports:
+          - name: deployment
+            containerPort: {{ .Values.ports.deployment }}
+        {{- if .Values.deployment.livenessProbe.enabled }}
+        livenessProbe:
+          initialDelaySeconds: {{ .Values.deployment.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.deployment.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.deployment.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.deployment.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.deployment.livenessProbe.failureThreshold }}
+        {{- end }}
+        {{- if .Values.deployment.readinessProbe.enabled }}
+        readinessProbe:
+          initialDelaySeconds: {{ .Values.deployment.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.deployment.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.deployment.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.deployment.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.deployment.readinessProbe.failureThreshold }}
+        {{- end }}
+        {{- with .Values.deployment.resources }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      nodeSelector:
+        "kubernetes.io/os": linux
+        {{- with .Values.deployment.nodeSelector }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- with .Values.deployment.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.deployment.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+      {{- with .Values.deployment.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
+{{- end }}
