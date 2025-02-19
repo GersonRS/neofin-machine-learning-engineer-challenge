@@ -1,8 +1,12 @@
 # Card ML Deployment
 
-## Overview
+## **Overview**
 
-Este projeto demonstra como treinar e implantar um modelo de machine learning para classificação usando o conjunto de dados de Cards do Gods Unchained. O modelo é treinado com Scikit-learn, e a classificação é servida por meio de uma API criada com FastAPI. Além disso, o projeto inclui um Dockerfile para facilitar a implantação do modelo em contêineres Docker. Também demonstra como testar o desempenho da API com o Locust.
+Este projeto demonstra o desenvolvimento completo de um modelo de **Machine Learning** para a classificação de **customers** (clientes dos nossos clientes) com base em seus padrões de pagamento. O objetivo é identificar categorias como **Bons Pagadores, Maus Pagadores, Pagadores Esquecidos, Pagadores Duvidosos e Novos Pagadores**, permitindo uma abordagem personalizada na cobrança e auxiliando na redução da inadimplência.
+
+O modelo foi treinado utilizando o **Scikit-learn** e implementado dentro de um **pipeline de Machine Learning** que inclui pré-processamento, normalização e inferência. Para disponibilizar a classificação em produção, desenvolvemos uma **API robusta com FastAPI**, que recebe os dados brutos de um pagamento, processa-os dinamicamente e retorna a categoria prevista do customer.
+
+Além disso, o projeto foi estruturado para facilitar a **implantação e escalabilidade**, permitindo sua execução em **contêineres Docker** e suportando testes de desempenho via ferramentas como **Locust**. Dessa forma, garantimos que a solução possa ser utilizada de forma eficiente e confiável no ambiente de produção da Neofin.
 
 ## Tabela de Conteúdo
 
