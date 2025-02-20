@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/GersonRS/neofin-machine-learning-engineer-challenge/compare/v1.0.0...v1.1.0) (2025-02-20)
+
+
+### 🚀 New Features
+
+* config chart ([05e47fb](https://github.com/GersonRS/neofin-machine-learning-engineer-challenge/commit/05e47fb7b0583deb0ca820f4896d76726b60beca))
+* finish project ([d6b9e55](https://github.com/GersonRS/neofin-machine-learning-engineer-challenge/commit/d6b9e55ed58ba113d6048de1e517e42f50837b16))
+* little way to handle an error ([1528b30](https://github.com/GersonRS/neofin-machine-learning-engineer-challenge/commit/1528b30bfa2a5b9eb199b71e3ef16e1686b2198a))
+* update dockerfile and adjust project ([1fc0aad](https://github.com/GersonRS/neofin-machine-learning-engineer-challenge/commit/1fc0aad0c1e0a56ed7b7596754cb2f9ca26659f2))
+
+
+### 📚 Documentation
+
+* update overview ([d28a2b5](https://github.com/GersonRS/neofin-machine-learning-engineer-challenge/commit/d28a2b560a240905d828d9499cfce005a61f2d03))
+
 ## [1.7.0](https://github.com/GersonRS/magalu-machine-learning-engineer-challenge/compare/v1.6.0...v1.7.0) (2024-05-31)
 
 
